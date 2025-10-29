@@ -742,8 +742,7 @@ des_key_size=56bit
 
 [Weak_Implementation]
 # Sample weak hash: MD5("password") = 5f4dcc3b5aa765d61d8327deb882cf99
-# Sample encoded flag: BASE64(FLAG{SARUMAN_CORRUPTED_58392746})
-weak_seed=RkxBR3tTQVJVTUFOX0NPUlJVUFRFRF81ODM5Mjc0Nn0=
+base64_flag=RkxBR3tTQVJVTUFOX0NPUlJVUFRFRF81ODM5Mjc0Nn0=
 
 [Mitigation]
 recommended_upgrade=crypto_strong.so

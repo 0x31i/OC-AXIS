@@ -77,7 +77,7 @@ mkdir -p /usr/local/axis/share/scripts
 mkdir -p /sys/fs/cgroup/axis/camera.service
 mkdir -p /sys/fs/cgroup/axis/network.service
 
-echo "  [✓] Comprehensive directory structure created across all writable locations"
+echo "  [COMPLETE] Comprehensive directory structure created across all writable locations"
 
 # ============================================================================
 # EASY FLAGS (5 flags) - Discoverable with basic enumeration
@@ -826,7 +826,7 @@ cp /var/www/local/axis-cgi/*.cgi /var/www/cgi-bin/ 2>/dev/null
 if ! ps | grep -v grep | grep httpd > /dev/null; then
     echo "[+] Starting HTTP server..."
     httpd -f -p 80 -h /var/www -c /run/axis/httpd.conf &
-    echo "  [✓] HTTP server started (PID: $!)"
+    echo "  [COMPLETE] HTTP server started (PID: $!)"
 else
     echo "  [!] HTTP server already running"
 fi
@@ -1063,14 +1063,14 @@ echo "    HARD flags: 9 (advanced techniques)"
 echo "    TOTAL: 27 flags"
 echo ""
 echo "[+] Writable Directories Used (8):"
-echo "    ✓ /mnt/flash             - Firmware, bootloader, factory configs"
-echo "    ✓ /dev/shm               - Shared memory, IPC, race conditions"
-echo "    ✓ /run                   - Runtime services and network"
-echo "    ✓ /sys/fs/cgroup         - Container/service control groups"
-echo "    ✓ /var                   - Standard Linux locations"
-echo "    ✓ /var/cache/recorder    - Recording stream caches"
-echo "    ✓ /var/lib/persistent    - Persistent storage configs"
-echo "    ✓ /usr/local             - Custom applications and scripts"
+echo "    • /mnt/flash             - Firmware, bootloader, factory configs"
+echo "    • /dev/shm               - Shared memory, IPC, race conditions"
+echo "    • /run                   - Runtime services and network"
+echo "    • /sys/fs/cgroup         - Container/service control groups"
+echo "    • /var                   - Standard Linux locations"
+echo "    • /var/cache/recorder    - Recording stream caches"
+echo "    • /var/lib/persistent    - Persistent storage configs"
+echo "    • /usr/local             - Custom applications and scripts"
 echo ""
 echo "[+] Deep Directory Structures:"
 echo "    • 3-5 levels deep in most locations"

@@ -1,7 +1,7 @@
 #!/bin/sh
-# IoT Camera CTF Setup Script v4.0 - Maximum Distribution Edition
-# POSIX-compliant for BusyBox ash
-# Flags distributed across ALL writable directories for realistic challenge
+# AXIS IoT Camera Vulnerable Lab Configuration Script v5
+# WARNING: FOR ISOLATED LAB ENVIRONMENT ONLY - NEVER USE IN PRODUCTION
+# This script intentionally creates security vulnerabilities and CTF flags for penetration testing practice
 
 echo "[*] Starting Axis Camera CTF setup - Maximum Distribution v4.0"
 echo "[*] $(date)"

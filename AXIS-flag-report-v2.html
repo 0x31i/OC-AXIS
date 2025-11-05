@@ -32,10 +32,10 @@
             <h3>📋 Version 2.0 Updates</h3>
             <p><strong>New Features:</strong></p>
             <ul>
-                <li>Flags distributed across <strong>8 writable directories</strong> for maximum realism</li>
+                <li>Flags distributed across <strong>8 writable directories</strong> for realism</li>
                 <li>Deep folder structures (3-5 levels) in all locations</li>
-                <li>New challenges: Shared memory IPC, CGroup configs, persistent storage, race conditions in /dev/shm</li>
-                <li>Enhanced IoT realism with firmware, bootloader, and factory configurations</li>
+                <li>Challenges: Shared memory IPC, CGroup configs, persistent storage, race conditions in /dev/shm</li>
+                <li>IoT realism with firmware, bootloader, and factory configurations</li>
                 <li>Includes /mnt/flash, /dev/shm, /run, /sys/fs/cgroup, /var/lib/persistent, /var/cache/recorder, and /usr/local</li>
             </ul>
         </div>
@@ -43,7 +43,7 @@
         <div class="stats">
             <h2>Statistics</h2>
             <p><strong>Target System:</strong> AXIS Network Camera (Embedded Linux/BusyBox)</p>
-            <p><strong>CTF Version:</strong> 4.0 - Maximum Distribution</p>
+            <p><strong>CTF Version:</strong> 4.0 - Latest Distribution</p>
             <p><strong>Total Flags:</strong> 27</p>
             <p><strong>Easy Flags:</strong> 5 (Basic enumeration)</p>
             <p><strong>Medium Flags:</strong> 13 (Requires tools/exploitation)</p>
@@ -491,111 +491,14 @@
                 </tr>
             </tbody>
         </table>
-        
-        <h2>Tools & Techniques Used</h2>
-        <ul>
-            <li><strong>Reconnaissance:</strong> nmap, find, grep, ls -laR, mount, df -h</li>
-            <li><strong>Web Exploitation:</strong> Command injection, path traversal, SSRF (curl, wget)</li>
-            <li><strong>Protocol Analysis:</strong> RTSP, ONVIF, SNMP, UPnP, SSH</li>
-            <li><strong>Filesystem Enumeration:</strong> Deep directory searching across 8 writable locations</li>
-            <li><strong>Binary Analysis:</strong> strings, dd, hexdump for firmware/bootloader</li>
-            <li><strong>Decoding:</strong> ROT13, BASE64 decoding</li>
-            <li><strong>Memory Inspection:</strong> /dev/shm analysis, race condition monitoring</li>
-            <li><strong>Privilege Escalation:</strong> SUID binaries, CGroup exploitation</li>
-            <li><strong>Hardware Security:</strong> JTAG, U-Boot, factory configs</li>
-            <li><strong>Advanced:</strong> Shared memory IPC, race conditions, blind injection, SSRF</li>
-        </ul>
-        
-        <h2>Key Enumeration Commands</h2>
-        <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; font-family: 'Courier New'; font-size: 12px;">
-            <p><strong># Discover all writable directories</strong></p>
-            <code>mount | grep 'rw'</code><br>
-            <code>df -h</code><br><br>
-            
-            <p><strong># Enumerate each writable location</strong></p>
-            <code>find /mnt/flash -type f 2>/dev/null</code><br>
-            <code>find /var/lib/persistent -type f 2>/dev/null</code><br>
-            <code>find /var/cache/recorder -type f 2>/dev/null</code><br>
-            <code>find /usr/local/axis -type f 2>/dev/null</code><br>
-            <code>ls -laR /dev/shm/ 2>/dev/null</code><br>
-            <code>ls -laR /run/axis/ 2>/dev/null</code><br>
-            <code>find /sys/fs/cgroup -type f 2>/dev/null</code><br><br>
-            
-            <p><strong># Search for hidden files</strong></p>
-            <code>find / -name '.*' -type f 2>/dev/null | grep -E '(flash|persistent|recorder)'</code><br><br>
-            
-            <p><strong># Search for flags</strong></p>
-            <code>grep -r 'FLAG{' /var/lib/persistent/ 2>/dev/null</code><br>
-            <code>grep -r 'FLAG{' /usr/local/axis/ 2>/dev/null</code><br>
-            <code>grep -r 'FLAG{' /mnt/flash/ 2>/dev/null</code><br><br>
-            
-            <p><strong># Web exploitation</strong></p>
-            <code>curl "http://camera/axis-cgi/param.cgi?action=get&group=test;id"</code><br>
-            <code>curl "http://camera/axis-cgi/download.cgi?file=../../../mnt/flash/config/factory/device_info.txt"</code><br>
-            <code>curl "http://camera/axis-cgi/webhook.cgi?url=http://127.0.0.1:22"</code><br><br>
-            
-            <p><strong># Race condition monitoring</strong></p>
-            <code>while true; do ls /dev/shm/axis/runtime/; sleep 0.01; done &</code><br>
-            <code>/usr/local/axis/share/scripts/race_condition_test.sh</code>
-        </div>
-        
-        <div class="stats">
-            <h2>Learning Outcomes</h2>
-            <p>✓ <strong>Comprehensive Filesystem Enumeration:</strong> Understanding writable vs read-only areas across 8 locations</p>
-            <p>✓ <strong>IoT-specific Attack Vectors:</strong> Embedded Linux constraints and realistic camera architecture</p>
-            <p>✓ <strong>Deep Directory Navigation:</strong> 3-5 level folder structures with hidden files</p>
-            <p>✓ <strong>Web Interface Vulnerabilities:</strong> Command injection, path traversal, SSRF</p>
-            <p>✓ <strong>Insecure Network Protocols:</strong> RTSP, SSH, SNMP, UPnP enumeration</p>
-            <p>✓ <strong>Firmware & Bootloader Security:</strong> U-Boot, firmware signatures, factory configs</p>
-            <p>✓ <strong>Memory & IPC Exploitation:</strong> Shared memory inspection, race conditions</p>
-            <p>✓ <strong>Container Security:</strong> CGroup configuration analysis</p>
-            <p>✓ <strong>Persistent Storage:</strong> Understanding non-volatile configurations</p>
-            <p>✓ <strong>Hardware Attack Vectors:</strong> JTAG debug interfaces</p>
-            <p>✓ <strong>Binary Analysis:</strong> Firmware extraction and string analysis</p>
-            <p>✓ <strong>Cryptographic Weaknesses:</strong> ROT13, BASE64, weak implementations</p>
-            <p>✓ <strong>Privilege Escalation:</strong> SUID binaries in embedded environments</p>
-            <p>✓ <strong>Advanced Exploitation:</strong> Blind injection, SSRF, time-of-check/time-of-use races</p>
-        </div>
-        
-        <div class="version-note">
-            <h3>🎯 Challenge Progression Guide</h3>
-            <p><strong>Phase 1 - Basic Enumeration (EASY - 15-30 min):</strong></p>
-            <ul>
-                <li>List all writable directories with mount/df commands</li>
-                <li>Recursively search each directory with find</li>
-                <li>Read configuration files and logs</li>
-                <li>View HTML source and web content</li>
-            </ul>
-            
-            <p><strong>Phase 2 - Tool Usage (MEDIUM - 1-2 hours):</strong></p>
-            <ul>
-                <li>Decode encoded content (ROT13, BASE64)</li>
-                <li>Analyze JSON/XML files</li>
-                <li>Test CGI endpoints for injection</li>
-                <li>Enumerate services (UPnP, runtime services)</li>
-                <li>Inspect certificates and signatures</li>
-                <li>Execute SUID binaries</li>
-            </ul>
-            
-            <p><strong>Phase 3 - Advanced Exploitation (HARD - 2-3 hours):</strong></p>
-            <ul>
-                <li>Perform SSRF attacks on internal services</li>
-                <li>Extract data from binaries (strings, dd, hexdump)</li>
-                <li>Monitor and exploit race conditions</li>
-                <li>Inspect shared memory structures</li>
-                <li>Analyze database files (SQLite)</li>
-                <li>Crack weak cryptographic implementations</li>
-                <li>Find deeply hidden configuration backups</li>
-            </ul>
-        </div>
-        
+     
         <p style="text-align: center; margin-top: 30px; color: #666;">
-            <strong>Note:</strong> This CTF v2.0 is for authorized educational purposes only. All techniques demonstrated should only be used on systems you own or have explicit permission to test.<br>
-            <strong>Version 2.0 Features:</strong> Maximum distribution across 8 writable directories with deep folder structures and realistic IoT challenges.
+            <strong>Note:</strong> This CTF v2.0 is for authorized educational purposes only. All techniques demonstrated should only be used on systems you have explicit permission to test.<br>
+            <strong>Version 2.0</strong>
         </p>
         
         <p style="text-align: center; margin-top: 20px; color: #999; font-size: 12px;">
-            AXIS Camera CTF v2.0 | Maximum Distribution Edition | Educational Use Only
+            AXIS Camera CTF v2.0 | Latest Distribution | Educational Use Only
         </p>
     </div>
 </body>

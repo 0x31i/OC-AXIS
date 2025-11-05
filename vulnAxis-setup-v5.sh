@@ -3,7 +3,7 @@
 # WARNING: FOR ISOLATED LAB ENVIRONMENT ONLY - NEVER USE IN PRODUCTION
 # This script intentionally creates security vulnerabilities and CTF flags for penetration testing practice
 
-echo "[*] Starting Axis Camera CTF setup - Maximum Distribution v4.0"
+echo "[*] Starting Axis Camera CTF setup - v5.0"
 echo "[*] $(date)"
 
 # ============================================================================
